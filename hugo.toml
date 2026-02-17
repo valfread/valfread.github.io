@@ -1,0 +1,56 @@
+baseURL = '/'
+languageCode = 'zh-cn'
+title = 'valfread'
+author = 'Qingshanyima'
+theme = "vortisil"
+
+# 1. 标签功能与主页设置
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+
+[params]
+  mainSectionsTitle = "文章"
+
+# 2. 右上角导航菜单
+[[menu.main]]
+    name = "主页"
+    url = "/"
+    weight = 1
+
+[[menu.main]]
+    name = "文章"
+    url = "/posts/"
+    weight = 2
+
+[[menu.main]]
+    name = "留言"
+    url = "/guestbook/"
+    weight = 3
+
+[[menu.main]]
+    name = "友链"
+    url = "/links/"
+    weight = 4
+
+[[menu.main]]
+    name = "关于"
+    url = "/about/"
+    weight = 5
+
+[[menu.main]]
+    name = "订阅"
+    url = "/subscribe/"
+    weight = 6
+
+# 3. 渲染逻辑：允许回车换行与 HTML 语法
+[markup.goldmark.renderer]
+  hardLineBreak = true
+  unsafe = true
+
+# 4. 订阅与 RSS 输出
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[services.rss]
+  limit = 15

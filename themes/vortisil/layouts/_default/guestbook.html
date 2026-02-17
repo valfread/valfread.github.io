@@ -1,0 +1,18 @@
+{{ define "main" }}
+<div class="links-container">
+
+  
+  {{/* 引导文字：高级灰 */}}
+  <div class="links-intro">
+    {{ .Content }}
+  </div>
+
+
+  {{/* 评论区：保持底部连贯 */}}
+  {{ if ne .Params.comments false }}
+  <div style="margin-top: 4rem;">
+    {{ partial "comments.html" . }}
+  </div>
+  {{ end }}
+</div>
+{{ end }}

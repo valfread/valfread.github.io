@@ -1,0 +1,23 @@
+{{ define "main" }}
+<div class="subscribe-container" style="max-width: 800px; margin: 0 auto; padding: 2rem 1rem;">
+  
+  {{/* 引导正文：高级灰与行间距 */}}
+  <div class="subscribe-content" style="margin-bottom: 3rem; color: #666; line-height: 1.8; font-family: 'Noto Sans SC', sans-serif !important;">
+    {{ .Content }}
+  </div>
+
+
+</div>
+
+<style>
+  /* 确保正文中的链接也保持高级灰 */
+  .subscribe-content a {
+    color: #666;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  .subscribe-content a:hover {
+    color: var(--color-deep-blue) ; /* 悬停时保留一点点主题色 */
+  }
+</style>
+{{ end }}

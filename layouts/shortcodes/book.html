@@ -1,0 +1,59 @@
+{{ $id := .Get "id" }}
+{{ $url := printf "https://neodb.social/api/book/%s" $id }}
+
+{{ $data := dict }}
+{{ with resources.GetRemote $url }}
+  {{ with .Content }}
+    {{ $data = . | transform.Unmarshal }}
+  {{ end }}
+{{ end }}
+
+{{ if $data.title }}
+<div class="book-card-container" 
+     onclick="window.open('https://neodb.social/book/{{ $id }}')" 
+     style="cursor:pointer; display: flex; background: #f9f9f9; border-radius: 8px; padding: 1rem; 
+            margin: 3rem 0 1rem 0; 
+            border: 1px solid #eee; 
+            gap: 1rem;
+            align-items: flex-start;">
+    
+    {{/* 1. 左侧封面图：缩小宽度以节省空间 */}}
+    <div class="book-card-img" style="flex: 0 0 80px;">
+        <img src="{{ $data.cover_image_url }}" loading="lazy" style="width: 100%; height: auto; border-radius: 4px; display: block;">
+    </div>
+
+    {{/* 2. 右侧内容区 */}}
+    <div class="book-card-text" style="flex: 1; display: flex; flex-direction: column; overflow: hidden;">
+        
+{{/* 标题与作者：优先保全标题，作者保底显示 8 个字符 */}}
+        <div class="book-card-header" style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem; gap: 0.5rem; width: 100%; overflow: hidden; white-space: nowrap;">
+            
+            {{/* 标题：优先占据空间，可根据内容扩张 */}}
+            <div class="book-card-title" style="font-size: 1.1rem; color: #333; font-weight: bold; flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis;">
+                {{ $data.title }}
+            </div>
+
+            {{/* 作者：被动压缩，但通过 ch 单位设置约 8 个字符的保底宽度 */}}
+            <div class="book-card-author" style="font-size: 0.9rem; color: #333; flex: 0 0 auto; max-width: 40%; min-width: 8ch; overflow: hidden; text-overflow: ellipsis; text-align: right;">
+                {{ $raw := printf "%v" ($data.authors | default $data.author) }}
+                {{ $clean := $raw | replaceRE `^\[(.*)\]$` "$1" }}
+                {{ $clean = $clean | replaceRE `["]|map:` "" }}
+                {{ trim $clean " " }}
+            </div>
+        </div>
+
+        {{/* 简介：强制限制为 4 行 */}}
+<div class="book-card-brief" style="font-size: 0.85rem; color: #555; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
+    {{ if .Inner }}
+        {{/* 渲染你的吐槽，并自动应用 Markdown 格式 */}}
+        {{ .Inner | markdownify }}
+    {{ else }}
+        {{/* 如果没写吐槽，显示官方简介（移除 truncate 150，由 CSS 控制截断更美观） */}}
+        {{ $data.brief }}
+    {{ end }}
+</div>
+    </div>
+</div>
+{{ else }}
+  <p style="color: #888; font-style: italic;">[书籍信息加载失败，请检查 ID: {{ $id }}]</p>
+{{ end }}

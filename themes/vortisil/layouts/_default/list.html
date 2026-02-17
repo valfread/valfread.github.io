@@ -1,0 +1,47 @@
+{{ define "main" }}
+<div class="posts-container">
+  {{/* 直接获取当前页面的文章 */}}
+  {{ $pages := .Pages }}
+  
+  {{ if or (eq .Kind "taxonomy") (eq .Kind "term") }}
+    <h1>标签：{{ .Title }} ({{ len $pages }})</h1>
+  {{ else if eq .Section "posts" }}
+    {{/* 如果是在 posts 目录下，强制显示“文章” */}}
+    <h1>所有文章</h1>
+  {{ else }}
+    <h1>{{ .Title }}</h1>
+  {{ end }}
+
+  {{ $groupedPages := $pages.GroupByDate "2006" }}
+
+  <div class="custom-posts-list">
+{{ range $groupedPages }}
+    <div class="year-group">
+      {{ range $index, $page := .Pages }}
+      <div class="post-row">
+        {{/* 第一栏：仅在每组第一行显示年份 */}}
+        <div class="year-col"style="width: 100px; flex-shrink: 0; color: #000; font-weight: 400; font-size: 1rem; font-family: 'PT Sans', sans-serif;">
+          {{ if eq $index 0 }}{{ .Date.Format "2006" }}{{ end }}
+        </div>
+
+        {{/* 第二栏： 标题 */}}
+        <div class="info-col">
+                   <a href="{{ .RelPermalink }}" class="post-title-link" style="color: #000;">{{ .Title }}</a>
+        </div>
+
+        {{/* 第三栏：标签（靠右对齐） */}}
+       <div class="tag-col" style="width: 70px;">
+  {{ with .Params.tags }}
+    {{ range . }}
+      <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" class="list-inline-tag" style="font-size: 0.85rem; font-weight: normal">{{ . }}</a>
+    {{ end }}
+  {{ end }}
+</div>
+      </div>
+      {{ end }}
+    </div>
+    {{ end }}
+  </div>
+  
+</div>
+{{ end }}

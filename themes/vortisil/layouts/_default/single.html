@@ -1,0 +1,127 @@
+{{ define "main" }}
+<div class="article-container">
+  {{/* 1. 封面图 */}}
+  {{ with .Params.cover }}
+  <section class="cover" id="cover" style="margin-bottom: 2rem;">
+    <img src="{{ . | relURL }}" alt="Cover Image" class="cover-image" loading="lazy" style="width: 100%; border-radius: 8px; object-fit: cover;">
+  </section>
+  {{ end }}
+
+  {{/* 2. 文章标题 */}}
+  <h1>{{ .Title }}</h1>
+
+  {{/* 3. 元信息区域 */}}
+  <div class="article-meta" style="margin-bottom: 3rem; color: #888; font-size: 0.95rem; line-height: 2; font-family: 'Noto Sans SC', sans-serif;">
+    {{ if eq .Section "posts" }}
+      <div class="meta-item">作者：{{ or .Params.author .Site.Params.author }}</div>
+      <div class="meta-item">发布于：{{ .Date | time.Format "2006-01-02" }}</div>
+      
+      {{ with .Params.tags }}
+      <div class="article-tags">
+        标签：
+        {{ range . }}
+        <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" class="article-meta-tag">#{{ . }}</a>
+        {{ end }}
+      </div>
+      {{ end }}
+
+{{/* 字数统计：仅统计 Markdown 源码中的正文，排除 Shortcode 抓取内容 */}}
+      {{/* a. 获取原始文本并移除 Shortcode 占位符 */}}
+      {{ $raw := .RawContent }}
+      {{ $cleanContent := $raw | replaceRE `\{\{<[\s\S]*?>\}\}` "" }}
+      {{ $cleanContent = $cleanContent | replaceRE `\{\{%[\s\S]*?%\}\}` "" }}
+
+      {{/* b. 统计中文字数 (匹配汉字) */}}
+      {{ $chineseWords := len (findRE "[\\p{Han}]" $cleanContent) }}
+
+      {{/* c. 统计英文单词数 (匹配连续的英文/数字) */}}
+      {{ $englishWords := len (findRE "[a-zA-Z0-9-]+" $cleanContent) }}
+
+      {{/* d. 计算总和并显示 */}}
+      {{ $totalCount := add $chineseWords $englishWords }}
+      
+      <div class="meta-item">
+        全文 {{ lang.FormatNumber 0 $totalCount }} 字，阅读时间约 {{ add (div $totalCount 300) 1 }} 分钟
+      </div>
+    {{ end }}
+  </div>
+
+  {{/* 4. 文章正文 */}}
+  <div class="post-content" style="line-height: 1.8; font-family: 'Noto Sans SC', sans-serif;">
+    {{ .Content }}
+  </div>
+
+  {{/* 5. 整合区域：移除所有 border 属性 */}}
+  <section class="post-footer" style="margin-top: 1rem; padding-top: 0.5rem; border: none !important;">
+    
+    {{/* 版权协议 */}}
+    {{ with .Params.license }}
+    <div class="article-license" style="color: #888; font-size: 0.9rem; font-family: 'Noto Sans SC', sans-serif; margin-bottom: 1rem; border: none !important;">
+      {{ $licenseUrl := $.Params.license_url | default "#" }}
+      {{ $dynamicContent := safeHTML (printf (index $.Site.Data.l10n "license") $licenseUrl) }}
+      {{ $renderedContent := replace $dynamicContent "__license__" . }}
+      <span>{{ $renderedContent | safeHTML }}</span>
+    </div>
+    {{ end }}
+
+    {{/* 文章导航：强制取消边框 */}}
+    <nav class="post-nav" style="display: flex; justify-content: space-between; font-family: 'PT Sans', sans-serif; border: none !important; margin: 0; padding: 0;">
+      <div class="nav-prev" style="flex: 1; text-align: left; padding-right: 1rem;">
+        {{ with .PrevInSection }}
+          <a href="{{ .RelPermalink }}" style="display: block; text-decoration: none;">
+            <div style="font-size: 0.8rem; color: #aaa; margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 1px;">&larr; Prev</div>
+            <div style="font-weight: 700; color: var(--color-deep-blue) !important; font-size: 1.1rem; line-height: 1.3;">{{ .Title }}</div>
+          </a>
+        {{ end }}
+      </div>
+
+      <div class="nav-next" style="flex: 1; text-align: right; padding-left: 1rem;">
+        {{ with .NextInSection }}
+          <a href="{{ .RelPermalink }}" style="display: block; text-decoration: none;">
+            <div style="font-size: 0.8rem; color: #aaa; margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 1px;">Next &rarr;</div>
+            <div style="font-weight: 700; color: var(--color-deep-blue) !important; font-size: 1.1rem; line-height: 1.3;">{{ .Title }}</div>
+          </a>
+        {{ end }}
+      </div>
+    </nav>
+  </section>
+
+  {{/* 6. 评论区 */}}
+  {{ if ne .Params.comments false }}
+    <div class="article-comments" style="margin-top: 1rem;">
+      {{ partial "comments.html" . }}
+    </div>
+  {{ end }}
+</div>
+
+<style>
+  /* 确保文章内部的 h1 保持简洁 */
+  h1 { 
+    border-bottom: none !important; 
+    margin-top: 1rem !important;    /* 增大上方间距 */
+    margin-bottom: 2rem !important; /* 减小下方间距 */
+  }
+  
+  /* 移除可能干扰 License 显示的伪元素 */
+  .article-license::before { content: none !important; }
+
+/* 1. 强制恢复正文 h2 标题的显示秩序 */
+  .post-content h2 { 
+    display: block !important; 
+    visibility: visible !important; 
+    opacity: 1 !important;
+    color: #333 !important;
+    margin-top: 2rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  /* 2. 抹除标题前方的蓝绿色 # 符号 */
+  .post-content h2::before,
+  .post-content h3::before,
+  .post-content h1::before {
+    content: none !important;
+    display: none !important;
+  }
+
+</style>
+{{ end }}

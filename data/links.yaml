@@ -1,0 +1,64 @@
+- name: "A Purrception"
+  url: "https://tortie.me/"
+  bio: "谨慎观察(=‘ｘ‘=)"
+  avatar: "/images/avatars/a-purrception.jpg" 
+
+- name: "长夏无事"
+  url: "https://changxiawushi.github.io/"
+  bio: "女侠之母"
+  avatar: "/images/avatars/changxia.jpg" 
+
+- name: "春额的第 N 个博客"
+  url: "https://brookclin.notion.site/"
+  avatar: "/images/avatars/chune.jpg" 
+
+- name: "椒盐豆豉"
+  url: "https://blog.douchi.space/"
+  bio: "喜欢就买 不行就分 多喝热水 重启电脑"
+  avatar: "/images/avatars/douchi.gif" 
+
+- name: "灰色闪电⚡"
+  url: "https://writee.org/hui-se-shan-dian/"
+  bio: "Here she finds herself."
+
+- name: "嘰嘰乞乞"
+  url: "https://tiffahahahu7.github.io/gigigatgat/zh-tw"
+  bio: "兩個重新開始的人"
+  avatar: "/images/avatars/gigigatgat.png"
+
+- name: "李一桃 🍑"
+  url: "https://yitaoli2023.github.io/yitaoli/"
+  bio: "我们红尘作伴，活得潇潇洒洒"
+
+- name: "Liminal Negative Space"
+  url: "https://blog.liminalnegativespace.xyz/#gsc.tab=0"
+  avatar: "/images/avatars/liminal-negative-space.jpeg"
+
+- name: "漂浮水母的宇宙"
+  url: "https://mmydonn.space/"
+  bio: "猫猫鱼"
+  lost: true
+
+- name: "The Wandering Allison"
+  url: "https://thewanderingallison.vercel.app/"
+  bio: "There is a lot of the cat in me, and cats are not joiners."
+  avatar: "/images/avatars/alison.webp"
+
+- name: "万千笔记"
+  url: "https://wanqian.blog/"
+  bio: "因为想微小地抵抗些什么所以才写"
+  avatar: "/images/avatars/wanqian.webp"
+
+- name: "康康的博客"
+  url: "https://misswiggg.typlog.io/"
+  lost: true
+  avatar: "/images/avatars/kangkang.png"
+
+- name: "我有著女人的拳頭"
+  url: "https://wuerhyueh.wordpress.com/author/wuerhyueh/"
+  bio: "這是一件非常娘、非常蒂的事！"
+  lost: true
+
+
+
+

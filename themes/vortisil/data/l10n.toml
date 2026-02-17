@@ -1,0 +1,18 @@
+# Language: Chinese (zh, zh_CN)
+#
+home = '首页'
+about = '关于'
+archives = '归档'
+search = '搜索'
+posts = '博客'
+works = '作品'
+by = '作者'
+posted_on = '发布于'
+last_modified = '最后修改于'
+pagenotfound_title = '未找到页面'
+pagenotfound_desc = '无法找到您请求的页面'
+return_home = '返回首页'
+back_to_top = '回到顶部'
+all_rights_reserved = '版权所有'
+powered_by = '由 <a href="https://gohugo.io">Hugo</a> & <a href="https://github.com/khitezza/vortisil/">Vortisil</a> 提供支持'
+license = '本文采用 <a href="%s" target="_blank" rel="license noopener noreferrer">__license__</a> 协议'

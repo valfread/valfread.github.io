@@ -1,0 +1,40 @@
+{{ define "main" }}
+<div class="about-container">
+
+  {{/* 2. 关于内容 */}}
+  <div class="about-content" style="margin-bottom: 3rem; color: #666; line-height: 1.8; font-family: 'Noto Sans SC', sans-serif !important;">
+    {{ .Content }}
+  </div>
+
+{{/* 3. 全站字数统计：排除 Shortcode 抓取内容 */}}
+  {{ $totalCount := 0 }}
+  {{ range (where .Site.RegularPages "Section" "posts") }}
+      {{/* a. 获取原始文本并移除 Shortcode 占位符 */}}
+      {{ $raw := .RawContent }}
+      {{ $clean := $raw | replaceRE `\{\{<[\s\S]*?>\}\}` "" }}
+      {{ $clean = $clean | replaceRE `\{\{%[\s\S]*?%\}\}` "" }}
+
+      {{/* b. 统计当前页面的真实字数 */}}
+      {{ $chineseWords := len (findRE "[\\p{Han}]" $clean) }}
+      {{ $englishWords := len (findRE "[a-zA-Z0-9-]+" $clean) }}
+      
+      {{/* c. 累加到全站总数 */}}
+      {{ $totalCount = add $totalCount (add $chineseWords $englishWords) }}
+  {{ end }}
+
+ <div class="site-stats" style="margin-top: 2rem; margin-bottom: 4rem; color: #888; font-size: 0.9rem; font-family: 'Noto Sans SC', sans-serif; border-top: 1px solid #eee; padding-top: 1rem;">
+    本站共计 {{ lang.FormatNumber 0 $totalCount }} 字
+  </div>
+
+  {{/* 4. 评论区 */}}
+  {{ if ne .Params.comments false }}
+  <div style="margin-top: 4rem;">
+    {{ partial "comments.html" . }}
+  </div>
+  {{ end }}
+</div>
+
+<style>
+  h1 { border-bottom: none !important; }
+</style>
+{{ end }}

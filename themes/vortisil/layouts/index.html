@@ -1,0 +1,46 @@
+{{ define "main" }}
+{{/* 仅针对主页：将容器顶部 padding 从 3.5rem 减少到约 1.2rem */}}
+<style>
+  .posts-container {
+    padding-top: 1.2rem !important;
+  }
+</style>
+
+  {{/* 1. 雪山大图回归：仅物理存在于主页模板中 */}}
+  <div class="custom-banner" style="margin-bottom: 3rem;">
+      <img src="/brightcover.jpg" style="width: 100%; height: 250px; object-fit: cover; border-radius: 8px; display: block;">
+  </div>
+
+  {{/* 2. 最近 10 篇文章列表 */}}
+  <div class="recent-posts" style="margin-top: 2rem;">
+    {{/* 取得 posts 目录下的前 10 篇文章 */}}
+    {{ $recent := (where .Site.RegularPages "Section" "posts") | first 10 }}
+    
+    {{ range $recent }}
+    <div class="post-row" style="display: flex; align-items: baseline; padding: 8px 0; gap: 40px; border: none;">
+
+      {{/* 左栏：发布时间 (左对齐) */}}
+      <div class="post-date" style="width: 100px; flex-shrink: 0; color: var(--color-deep-blue); font-family: 'PT Sans', sans-serif; font-size: 0.95rem; text-align: left;">
+        {{ .Date.Format "2006-01-02" }}
+      </div>
+
+      {{/* 右栏：文章标题 (左对齐) */}}
+      <div class="info-col" style="flex-grow: 1; text-align: left;">
+        <a href="{{ .RelPermalink }}" class="post-title-link" style="color: var(--color-text); font-weight: 500; font-size: 0.95rem; text-decoration: none;">
+          {{ .Title }}
+        </a>
+      </div>
+
+    </div>
+    {{ end }}
+
+    {{/* 3. 右下角“查看所有文章”超链接 */}}
+    <div style="text-align: right; margin-top: 2rem; margin-bottom: 5rem;">
+      <a href="/posts/" style="color: var(--color-deep-blue); font-size: 0.9rem; font-weight: bold; text-decoration: none; border-bottom: 1px solid var(--color-deep-blue); padding-bottom: 2px;">
+        查看更多
+      </a>
+    </div>
+  </div>
+
+</div>
+{{ end }}
