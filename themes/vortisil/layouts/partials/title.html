@@ -1,13 +1,11 @@
 {{- if .IsHome -}}
     {{ site.Title }}
-{{- else if eq .Kind "page" | and (in .CurrentSection.Path "posts") -}}
+{{- else if .Title -}}
+    {{/* 只要在 index.md 里写了 title，就优先显示它 */}}
     {{ .Title }} @ {{ site.Title }}
 {{- else if .IsSection | and (eq .Section "posts") -}}
     {{ (index site.Data.l10n "archives") | default "Archives" }} @ {{ site.Title }}
-{{- else if eq .RelPermalink "/about/" -}}
-    {{ (index site.Data.l10n "about") | default "About" }} @ {{ site.Title }}
-{{- else if eq .RelPermalink "/search/" -}}
-    {{ (index site.Data.l10n "search") | default "Search" }} @ {{ site.Title }}
 {{- else -}}
+    {{/* 只有真的啥都没有时，才显示 404 */}}
     {{ (index site.Data.l10n "pagenotfound_title") | default "404" }} @ {{ site.Title }}
 {{- end -}}

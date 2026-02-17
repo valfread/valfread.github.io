@@ -1,10 +1,10 @@
 ---
-title: "是道德的汹涌还是人性的显灵？坚强妇女依靠一个 AirTag 两辆警车千里寻回失窃单车"
+title: "是道德的汹涌还是人性的显灵？坚强妇女依靠 AirTag 两辆警车千里寻回失窃单车"
 date: 2022-11-09T10:21:03-05:00
 draft: false
 author: Qingshanyima
 comments: true
-tags: [随笔]
+tags: [生活]
 license: "CC-BY-NC-ND 4.0 "
 license_url: "https://creativecommons.org/licenses/by-nc-nd/4.0/"
 ---

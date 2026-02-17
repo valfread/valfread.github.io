@@ -17,7 +17,7 @@
     {{ $recent := (where .Site.RegularPages "Section" "posts") | first 10 }}
     
     {{ range $recent }}
-    <div class="post-row" style="display: flex; align-items: baseline; padding: 8px 0; gap: 40px; border: none;">
+    <div class="post-row" style="display: flex; align-items: baseline; padding: 8px 0; gap: 30px; border: none;">
 
       {{/* 左栏：发布时间 (左对齐) */}}
       <div class="post-date" style="width: 100px; flex-shrink: 0; color: var(--color-deep-blue); font-family: 'PT Sans', sans-serif; font-size: 0.95rem; text-align: left;">

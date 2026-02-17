@@ -1,4 +1,33 @@
 {{ define "main" }}
+<style>
+  /* 针对手机端（宽度小于 600px）的适配 */
+  @media (max-width: 600px) {
+    /* 1. 强制将两列网格改为单列 */
+    .links-grid {
+      grid-template-columns: 1fr !important; /* 核心：让每个卡片独占一行 */
+      gap: 0.75rem !important;                /* 缩小卡片间距 */
+    }
+
+    /* 2. 优化卡片布局 */
+    .friend-card {
+      padding-left: 1rem !important;
+      margin-bottom: 0.75rem !important;
+    }
+
+
+    /* 4. 防止文字溢出或挤压 */
+    .friend-info {
+      min-width: 0; /* 允许内部文字正常折行 */
+    }
+    
+    .friend-bio {
+      line-height: 1.4 !important;
+      word-break: break-all;
+    }
+  }
+</style>
+
+
 <div class="links-container">
 
   <div class="links-intro">
@@ -71,3 +100,4 @@
   </div>
 </div>
 {{ end }}
+

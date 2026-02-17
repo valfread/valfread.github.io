@@ -49,24 +49,54 @@
       text-decoration: none !important;
   }
 
-  /* 5. 移动端适配 */
+/* 移动端适配：满足特定排版逻辑 */
   @media (max-width: 600px) {
+      /* 1. 容器改为纵向，让年份先独占一行 */
       .posts-container .post-row {
-          flex-direction: column;
-          padding: 1rem 0;
-      }
+      display: block !important; /* 改为块级，支持内部浮动 */
+      padding: 0.1rem 0 !important; /* 显著缩小垂直间距 */
+    }
+
+      /* 年份独占一行 */
       .posts-container .year-col {
-          width: auto !important;
-          margin-bottom: 0.3rem;
-          opacity: 0.5;
+          width: 100% !important;
+          margin-bottom: 0.2rem !important;
+          font-size: 1rem !important;
       }
-      .posts-container .tag-col {
-          margin-left: 0 !important;
-          max-width: 100%;
-          justify-content: flex-start;
-          margin-top: 0.5rem;
-      }
+
+/* 标签：精准浮动 */
+  .posts-container .tag-col {
+    float: right !important;
+    display: flex !important; /* 保持内部标签横向排列 */
+    margin-top: 2px !important; /* 如果标签偏高，微调这个像素值 */
+    margin-left: 0.5px !important;
+    max-width: 30% !important;
+    position: relative;
+    z-index: 2;
   }
+
+  /* 标题：内联包裹 */
+  .posts-container .info-col {
+    display: inline !important; 
+    max-width: 60% !important;
+  }
+
+  .posts-container .post-title-link {
+    display: inline !important;
+    font-size: 0.95rem !important;
+    line-height: 1.5 !important;
+  }
+
+  /* 解决长标题“钻”入标签下方的问题 */
+    .posts-container .post-row::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+}
+
+
 </style>
 
 

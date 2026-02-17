@@ -1,4 +1,6 @@
 {{ define "main" }}
+{{/* 强制定义页面标题，确保浏览器 Tab 正常显示 */}}
+{{ .Scratch.Set "title" .Title }}
 <div class="subscribe-container" style="max-width: 800px; margin: 0 auto; padding: 2rem 1rem;">
   
   {{/* 引导正文：高级灰与行间距 */}}

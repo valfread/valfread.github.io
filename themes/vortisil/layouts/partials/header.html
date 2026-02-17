@@ -292,8 +292,8 @@ body {
         </div>
     </nav>
 
-{{/* 只要户口在 pages 文件夹里，或者是列表页，就显示 Banner */}}
-{{ if and (not .IsHome) (or (ne .Kind "page") (eq .Section "pages")) }}
+{{/* 只要不是首页，且不是“单篇具体文章”，就显示带有模糊背景和标题的 Banner */}}
+{{ if and (not .IsHome) (not (and .IsPage (eq .Section "posts"))) }}
     <section class="page-banner">
         <h1>{{ .Title }}</h1>
     </section>
