@@ -5,7 +5,7 @@ comments: false
 url: "/subscribe/" 
 ---
 
-本站的 RSS 订阅地址为：[{{ .Site.BaseURL }}index.xml]({{ .Site.BaseURL }}index.xml)  
+本站的 RSS 订阅地址为：[RSS]({{ with .OutputFormats.Get "RSS" }}{{ .RelPermalink }}{{ end }})
 
 
 

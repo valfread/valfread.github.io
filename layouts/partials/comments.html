@@ -1,5 +1,7 @@
-{{/* 这是一个公用的评论组件，修改此处会同步到所有页面 */}}
+{{/* 1. 评论框容器 */}}
 <div class="giscus" style="margin-top: 2rem;"></div>
+
+{{/* 2. Giscus 加载脚本：将初始主题设为 light */}}
 <script src="https://giscus.app/client.js"
         data-repo="valfread/valfread.github.io"
         data-repo-id="R_kgDORQkNwQ"
@@ -10,8 +12,9 @@
         data-reactions-enabled="1"
         data-emit-metadata="0"
         data-input-position="bottom"
-        data-theme="light_tritanopia"
+        data-theme="transparent_dark" 
         data-lang="zh-CN"
         crossorigin="anonymous"
         async>
 </script>
+

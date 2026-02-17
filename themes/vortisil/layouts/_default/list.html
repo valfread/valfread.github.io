@@ -1,47 +1,152 @@
 {{ define "main" }}
-<div class="posts-container">
-  {{/* 直接获取当前页面的文章 */}}
-  {{ $pages := .Pages }}
-  
-  {{ if or (eq .Kind "taxonomy") (eq .Kind "term") }}
-    <h1>标签：{{ .Title }} ({{ len $pages }})</h1>
-  {{ else if eq .Section "posts" }}
-    {{/* 如果是在 posts 目录下，强制显示“文章” */}}
-    <h1>所有文章</h1>
-  {{ else }}
-    <h1>{{ .Title }}</h1>
-  {{ end }}
 
-  {{ $groupedPages := $pages.GroupByDate "2006" }}
+<style>
+  /* 1. 基础布局：消除颤动的核心是 align-items: flex-start */
+  .posts-container .post-row {
+      display: flex;
+      align-items: flex-start; /* 改为顶部对齐，比 baseline 更稳固，不会随字体波动抖动 */
+      padding: 0.5rem 0;
+      min-height: 1.5rem;
+  }
+
+  /* 2. 标题栏逻辑：允许换行，但不挤压右侧 */
+  .posts-container .info-col {
+      flex: 1; /* 占据剩余所有空间 */
+      min-width: 0; /* 允许内部文字换行 */
+      padding-right: 20px; /* 与右侧标签保持安全距离 */
+  }
+
+  .posts-container .post-title-link {
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      display: inline; /* 允许自然换行 */
+      line-height: 1.5;
+      text-decoration: none !important;
+      transition: opacity 0.2s ease;
+  }
+
+  /* 3. 标签栏逻辑：固定在右侧，不被标题侵占 */
+  .posts-container .tag-col {
+      margin-left: auto;
+      flex-shrink: 0; /* 强制不被标题压缩 */
+      text-align: right;
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+      max-width: 30%; /* 限制标签最宽占 30%，保证标题有空间 */
+  }
+
+  .posts-container .list-inline-tag {
+      white-space: nowrap; /* 标签内部不换行 */
+      font-size: 0.85rem;
+      transition: opacity 0.2s ease;
+  }
+
+  /* 4. 交互：仅使用透明度，彻底禁用下划线 */
+  .posts-container .post-title-link:hover, 
+  .posts-container .list-inline-tag:hover {
+      opacity: 0.6;
+      text-decoration: none !important;
+  }
+
+  /* 5. 移动端适配 */
+  @media (max-width: 600px) {
+      .posts-container .post-row {
+          flex-direction: column;
+          padding: 1rem 0;
+      }
+      .posts-container .year-col {
+          width: auto !important;
+          margin-bottom: 0.3rem;
+          opacity: 0.5;
+      }
+      .posts-container .tag-col {
+          margin-left: 0 !important;
+          max-width: 100%;
+          justify-content: flex-start;
+          margin-top: 0.5rem;
+      }
+  }
+</style>
+
+
+
+<div class="posts-container">
+
+  {{ $pages := .Pages }}
+
+ 
+
+  {{/* 直接进入列表内容，顶部留白已由 header 样式控制 */}}
 
   <div class="custom-posts-list">
+
+    {{ $groupedPages := $pages.GroupByDate "2006" }}
+
+
+
+
+
 {{ range $groupedPages }}
-    <div class="year-group">
+
+    <div class="year-group" >
+
       {{ range $index, $page := .Pages }}
+
       <div class="post-row">
+
         {{/* 第一栏：仅在每组第一行显示年份 */}}
-        <div class="year-col"style="width: 100px; flex-shrink: 0; color: #000; font-weight: 400; font-size: 1rem; font-family: 'PT Sans', sans-serif;">
+
+        <div class="year-col"style="width: 100px; flex-shrink: 0; color: #000; font-weight: 400;  font-family: 'PT Sans', sans-serif;">
+
           {{ if eq $index 0 }}{{ .Date.Format "2006" }}{{ end }}
+
         </div>
+
+
 
         {{/* 第二栏： 标题 */}}
+
         <div class="info-col">
+
                    <a href="{{ .RelPermalink }}" class="post-title-link" style="color: #000;">{{ .Title }}</a>
+
         </div>
 
-        {{/* 第三栏：标签（靠右对齐） */}}
-       <div class="tag-col" style="width: 70px;">
-  {{ with .Params.tags }}
-    {{ range . }}
-      <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" class="list-inline-tag" style="font-size: 0.85rem; font-weight: normal">{{ . }}</a>
-    {{ end }}
-  {{ end }}
+
+
+       {{/* 第三栏：标签。使用 margin-left: auto 强制推向最右侧 */}}
+
+        <div class="tag-col" style="margin-left: auto; flex-shrink: 0; text-align: right; display: flex; gap: 12px; justify-content: flex-end;">
+
+          {{ with .Params.tags }}
+
+            {{ range . }}
+
+              <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" class="list-inline-tag" style="font-size: 0.85rem; font-weight: normal; color: var(--color-deep-blue) !important; white-space: nowrap;">
+
+                {{ . }}
+
+              </a>
+
+            {{ end }}
+
+          {{ end }}
+
 </div>
+
       </div>
+
       {{ end }}
+
     </div>
+
     {{ end }}
+
   </div>
-  
+
+ 
+
 </div>
+
 {{ end }}

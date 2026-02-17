@@ -36,7 +36,7 @@
 
     .about-container, .links-container, .guestbook-container, .posts-container,
     .subscribe-container, .article-container, .posts {
-        max-width: 800px !important;
+        max-width: 736px !important;
         margin: 0 auto !important;
         padding: 3.5rem 1.5rem 2rem 1.5rem !important; 
         display: block !important;
@@ -234,6 +234,25 @@
     aspect-ratio: 16 / 9; /* 锁定视频比例，防止变形 */
     border-radius: 8px;   /* 增加圆角，维持极简审美 */
 }
+
+/* 这一段就是解决“宽度闪动”的补丁 */
+html {
+        /* 强制显示滚动条占位符，防止页面左右闪动 */
+        overflow-y: scroll !important;
+}
+        /* ------ 统一全站所有页面的容器规格，消除 46rem 与 800px 的冲突------- */
+body {
+    max-width: 736px !important; 
+}
+
+.about-container, .links-container, .guestbook-container, .posts-container,
+.subscribe-container, .article-container, .posts {
+    max-width: 100% !important; /* 让内部容器填满已限制为 800px 的 body */
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 3.5rem 1.5rem 2rem 1.5rem !important; 
+    box-sizing: border-box !important;
+}
 </style>
 
 <header>
@@ -281,3 +300,4 @@
 {{ end }}
     
 </header>
+

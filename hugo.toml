@@ -1,4 +1,4 @@
-baseURL = '/'
+baseURL = 'https://valfread.github.io/'
 languageCode = 'zh-cn'
 title = 'valfread'
 author = 'Qingshanyima'
