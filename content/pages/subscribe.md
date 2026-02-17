@@ -5,7 +5,7 @@ comments: false
 url: "/subscribe/" 
 ---
 
-本站的 RSS 订阅地址为：[RSS]({{ with .OutputFormats.Get "RSS" }}{{ .RelPermalink }}{{ end }})
+本站的 [RSS](https://valfread.github.io/index.xml) 订阅地址为：https://valfread.github.io/index.xml
 
 
 
