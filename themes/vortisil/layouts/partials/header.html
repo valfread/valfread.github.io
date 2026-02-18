@@ -5,7 +5,7 @@
 <style>
     /* 1. 字体与全站链接基调 */
     *, *::before, *::after {
-        font-family: 'PT Sans', 'Noto Sans SC', sans-serif !important;
+        font-family: 'PT Sans', 'Noto Sans SC', sans-serif ;
         -webkit-font-smoothing: antialiased;
     }
 
@@ -150,24 +150,25 @@
     opacity: 1; /* 既然有了影子，可以恢复 100% 不透明度，增加对比 */
     }
 
-/* 深度定制引用样式 (Blockquote) */
+/* ----------深度定制引用样式 (Blockquote) --------------------*/
 .post-content blockquote {
-    margin: 2rem 0;
-    padding: 1rem 1.5rem;
+    margin: 1rem 0;
+    padding: 1rem 1rem;
     /* 采用更兼容的十六进制带透明度写法，或确保逗号间无全角空格 */
     background-color: rgba(100, 144, 255, 0.05); 
     /* 显式 fallback：如果变量失效，使用深蓝色作为保底 */
     border-left: 4px solid #6490ff; 
     border-left: 4px solid var(--color-deep-blue);
-    border-radius: 0 4px 4px 0;
-    font-style: italic;
-    color: #555;
+    border-radius: 0 2px 2px 0;
     display: block;        /* 强制引用块作为整体块级元素 */
     text-align: left;      /* 确保左对齐 */
     white-space: pre-wrap; /* 关键：保留 Markdown 中的换行逻辑 */
 }
 
 .post-content blockquote p {
+    font-family: 'Noto Serif SC', serif !important;
+    font-size: 0.85rem;
+    color: #555;
     margin-bottom: 0 !important; /* 强制消除内部间距 */
     display: block;        /* 确保引用内的段落是纵向堆叠的 */
     margin: 0 0 0.8em 0;  /* 给歌词行之间留一点点间距 */
