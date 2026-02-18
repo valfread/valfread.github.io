@@ -5,9 +5,21 @@
   .posts-container .post-row {
       display: flex;
       align-items: flex-start; /* 改为顶部对齐，比 baseline 更稳固，不会随字体波动抖动 */
-      padding: 0.5rem 0;
+     padding: 6px 0 !important; 
       min-height: 1.5rem;
+      font-size: 0.95rem;
+      gap: 20px;
+      border: none !important;
+      line-height: 1.6 !important; 
   }
+
+    .posts-container .year-col {
+        width: 60px;
+        flex-shrink: 0;
+        color: var(--color-deep-blue) !important; 
+        font-weight: bold;
+        font-family: 'PT Sans', sans-serif;
+    }
 
   /* 2. 标题栏逻辑：允许换行，但不挤压右侧 */
   .posts-container .info-col {
@@ -16,15 +28,13 @@
       padding-right: 20px; /* 与右侧标签保持安全距离 */
   }
 
-  .posts-container .post-title-link {
-      word-wrap: break-word;
-      overflow-wrap: break-word;
-      display: inline; /* 允许自然换行 */
-      line-height: 1.5;
-      text-decoration: none !important;
-      transition: opacity 0.2s ease;
-  }
-
+     .posts-container .post-title-link {
+        color: var(--color-text) !important; /* 标题跟随主题色切换 */
+        font-weight: 500 ;
+        text-decoration: none ;
+        border-bottom: none ;
+        padding-bottom: 0 ;
+     }
   /* 3. 标签栏逻辑：固定在右侧，不被标题侵占 */
   .posts-container .tag-col {
       margin-left: auto;
@@ -37,9 +47,10 @@
   }
 
   .posts-container .list-inline-tag {
-      white-space: nowrap; /* 标签内部不换行 */
-      font-size: 0.85rem;
-      transition: opacity 0.2s ease;
+     color: var(--color-deep-blue);
+        text-decoration: none ;
+        margin-left: 8px;
+        border-bottom: none ;
   }
 
   /* 4. 交互：仅使用透明度，彻底禁用下划线 */

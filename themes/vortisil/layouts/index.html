@@ -20,13 +20,13 @@
     <div class="post-row" style="display: flex; align-items: baseline; padding: 8px 0; gap: 30px; border: none;">
 
       {{/* 左栏：发布时间 (左对齐) */}}
-      <div class="post-date" style="width: 100px; flex-shrink: 0; color: var(--color-deep-blue); font-family: 'PT Sans', sans-serif; font-size: 0.95rem; text-align: left;">
+      <div class="post-date" style="width: 100px; flex-shrink: 0; color: var(--color-text); font-family: 'PT Sans', sans-serif; font-size: 0.95rem; text-align: left;">
         {{ .Date.Format "2006-01-02" }}
       </div>
 
       {{/* 右栏：文章标题 (左对齐) */}}
       <div class="info-col" style="flex-grow: 1; text-align: left;">
-        <a href="{{ .RelPermalink }}" class="post-title-link" style="color: var(--color-text); font-weight: 500; font-size: 0.95rem; text-decoration: none;">
+        <a href="{{ .RelPermalink }}" class="post-title-link" style="color: #000; font-weight: bold; font-size: 0.95rem; text-decoration: none;">
           {{ .Title }}
         </a>
       </div>
