@@ -3,7 +3,7 @@
 # 1. 备份源码到 main 分支
 echo "正在备份源码到 main 分支..."
 git add .
-git commit -m "Site source update: $(date +'%Y-%m-%d %H:%M:%S') new post and updates"
+git commit -m "Site source update: $(date +'%Y-%m-%d %H:%M:%S') minor bugs fixed "
 git push origin main
 
 # 2. 清理旧文件并重新生成静态网页
