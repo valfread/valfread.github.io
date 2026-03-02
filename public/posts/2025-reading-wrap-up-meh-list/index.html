@@ -105,30 +105,33 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&family=Noto+Serif+SC:wght@500;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-     
-    *, *::before, *::after {
-        font-family: 'PT Sans', 'Noto Sans SC', sans-serif ;
-        -webkit-font-smoothing: antialiased;
-    }
+ 
+html, body {
+    font-family: 'PT Sans', 'Noto Sans SC', sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
 
+ 
+button, input, select, textarea {
+    font-family: inherit;
+}
+
+ 
+code, pre, kbd, samp {
+    font-family: 'Fira Code', monospace !important;  
+}
      
 
     :root {
      
-    --color-deep-blue: #4169e1;  
+    --color-deep-blue: #597ade;  
     
      
      
     --color-primary: var(--color-deep-blue); 
 }
 
- 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --color-deep-blue: #89b4fa;  
-        --color-primary: var(--color-deep-blue);
-    }
-}
+
 
      
     main, #main, .main-content, article, .post, .page {
@@ -253,27 +256,38 @@
     }
 
  
+
 .post-content blockquote {
     margin: 1rem 0;
-    padding: 1rem 1rem;
-     
+    padding: 0.5rem 0.5rem;
     background-color: rgba(100, 144, 255, 0.05); 
-     
-    border-left: 4px solid #6490ff; 
     border-left: 4px solid var(--color-deep-blue);
     border-radius: 0 2px 2px 0;
-    display: block;         
-    text-align: left;       
-    white-space: pre-wrap;  
+    display: block;
+    text-align: left;
+    white-space: pre-wrap;
+    font-family: 'Noto Serif SC', serif !important;
+    font-size: 0.88rem;
 }
 
 .post-content blockquote p {
     font-family: 'Noto Serif SC', serif !important;
-    font-size: 0.85rem;
+    font-size: 0.88rem;
     color: #555;
-    margin-bottom: 0 !important;  
-    display: block;         
-    margin: 0 0 0.8em 0;   
+     
+    margin: 0 0 0 0 !important; 
+    display: block;
+}
+
+ 
+[data-theme='dark'] .post-content blockquote {
+     
+    background-color: rgba(0, 0, 0, 0.2) !important; 
+    border-left-color: var(--color-deep-blue) !important;
+}
+
+[data-theme='dark'] .post-content blockquote p {
+    color: #dddddd !important;  
 }
 
  
@@ -391,7 +405,7 @@ body {
       
       
       <div class="meta-item">
-        全文 2,129 字，阅读时间约 8 分钟
+        全文 2,166 字，阅读时间约 8 分钟
       </div>
     
   </div>
@@ -506,7 +520,7 @@ body {
 <div class="book-card-brief" style="font-size: 0.85rem; color: #555; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
     
         
-        
+        （更要紧是逃离日本人的水书）
     
 </div>
     </div>
@@ -516,7 +530,7 @@ body {
 <p>这本书，我看标题以为至少是教人一些如何从消费主义中逃离的实用方法，或者是对消费主义的批判和反思，结果看了才发现，这就是一本可能都不太会打字的欧吉桑的碎碎念，belike，有些年轻人每天穿同一款衣服，在老朽的年代简直难以想象，说明家里没有女主人打理他衣食住行，但竟也能实现少消费……</p>
 <p>如果只是看口水话倒也罢了，更惊悚的是欧吉桑不时还天真流露出一些臭不可闻的腐朽。比如有一章他先是颇为自得地提到自己从孩子出生就亲历亲为育儿，每周有多达两天竟然亲自接孩子放学，因而放弃了自己宝贵的下班后和同事们去居酒屋放松的时间！（Bro，一周好像有七天？）当我白眼还没转回来，他又大谈下班后的居酒屋时间是多么重要，对于上班族来说多么不可或缺，进而提到他的一项善举：他会特意邀请公司里已婚已育的女同事（作者专门注解，当然，是在征得她们先生同意的前提下）下班后一同去居酒屋社交！显然已经沉醉在自己给女同事们创造了极其珍贵的放松机会的伟大里不知天地为何物了！</p>
 <p>就这样的质量，这样的内容，这本书居然还浪费了 216 页纸（不含封面目录出版信息页）！而我，居然也一本正经地码了这么多段吐槽。真可谓：</p>
-<div style="text-align: center; margin: 1rem 0;"> <img src="hello.webp" style="width: 20%; height: auto;" alt="hellow">  </div>
+<div style="text-align: center; margin: 1rem 0;"> <img src="hello.webp" style="width: 35%; height: auto;" alt="hellow">  </div>
 
 
 
@@ -680,7 +694,7 @@ body {
 <div class="book-card-brief" style="font-size: 0.85rem; color: #555; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
     
         
-        
+        （封面都有错别字的书是不值得信任的）
     
 </div>
     </div>
@@ -738,7 +752,7 @@ body {
 <div class="book-card-brief" style="font-size: 0.85rem; color: #555; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
     
         
-        
+        （愿我们远离书名诈骗）
     
 </div>
     </div>

@@ -13,4 +13,19 @@ license_url: "https://creativecommons.org/licenses/by-nc-nd/4.0/"
 
 ## 推荐的书
 
-{{< book id="3OtvKJMhuMzi2JmizpGVH6" >}}{{< /book >}}
+{{< book id="3OtvKJMhuMzi2JmizpGVH6" />}}
+
+制造贫困
+
+老妓抄
+
+父权制与资本积累
+
+性权利
+
+格外的活法
+
+
+{{< book id="6UaIDeXOBRklk2TFkDN5Ok" />}}
+
+琼瑶的自传。

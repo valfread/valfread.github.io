@@ -105,30 +105,33 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&family=Noto+Serif+SC:wght@500;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-     
-    *, *::before, *::after {
-        font-family: 'PT Sans', 'Noto Sans SC', sans-serif ;
-        -webkit-font-smoothing: antialiased;
-    }
+ 
+html, body {
+    font-family: 'PT Sans', 'Noto Sans SC', sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
 
+ 
+button, input, select, textarea {
+    font-family: inherit;
+}
+
+ 
+code, pre, kbd, samp {
+    font-family: 'Fira Code', monospace !important;  
+}
      
 
     :root {
      
-    --color-deep-blue: #4169e1;  
+    --color-deep-blue: #597ade;  
     
      
      
     --color-primary: var(--color-deep-blue); 
 }
 
- 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --color-deep-blue: #89b4fa;  
-        --color-primary: var(--color-deep-blue);
-    }
-}
+
 
      
     main, #main, .main-content, article, .post, .page {
@@ -253,27 +256,38 @@
     }
 
  
+
 .post-content blockquote {
     margin: 1rem 0;
-    padding: 1rem 1rem;
-     
+    padding: 0.5rem 0.5rem;
     background-color: rgba(100, 144, 255, 0.05); 
-     
-    border-left: 4px solid #6490ff; 
     border-left: 4px solid var(--color-deep-blue);
     border-radius: 0 2px 2px 0;
-    display: block;         
-    text-align: left;       
-    white-space: pre-wrap;  
+    display: block;
+    text-align: left;
+    white-space: pre-wrap;
+    font-family: 'Noto Serif SC', serif !important;
+    font-size: 0.88rem;
 }
 
 .post-content blockquote p {
     font-family: 'Noto Serif SC', serif !important;
-    font-size: 0.85rem;
+    font-size: 0.88rem;
     color: #555;
-    margin-bottom: 0 !important;  
-    display: block;         
-    margin: 0 0 0.8em 0;   
+     
+    margin: 0 0 0 0 !important; 
+    display: block;
+}
+
+ 
+[data-theme='dark'] .post-content blockquote {
+     
+    background-color: rgba(0, 0, 0, 0.2) !important; 
+    border-left-color: var(--color-deep-blue) !important;
+}
+
+[data-theme='dark'] .post-content blockquote p {
+    color: #dddddd !important;  
 }
 
  
@@ -391,7 +405,7 @@ body {
       
       
       <div class="meta-item">
-        全文 3,792 字，阅读时间约 13 分钟
+        全文 3,793 字，阅读时间约 13 分钟
       </div>
     
   </div>
@@ -744,6 +758,7 @@ body {
 <p>这本书最大的篇幅是描写对兰伯西丑闻，包括刻画吹哨人背景和境遇。不过它也涉及了很多普遍而触目惊心的仿制药问题：比如仿制药厂恐怖的数据造假率，美国食品药品监督管理局（FDA）对美国境外药厂缺乏执法权和检查人手而监管不到位，仿制药厂刻意把质量最差的药销售到制度最不完善的欠发达国家，导致国家的患者用了药却达不到效果，又大规模地让病毒（？）培养出高耐药性……令人非常忧心。</p>
 <p>另外让我印象很深的一点是书里描写到的官僚体制问题：美国法律规定，第一个向 FDA 递交仿制药申请的仿制药厂，如果申请通过，将在美国享受半年的独家销售权。而兰伯西在造假等问题终于引起政府调查后，竟为了罚金反过来向政府讨价还价：如果政府想要兰伯西同意支付高额罚金，就必须批准兰伯西递交的另一项仿制药申请，否则它付不起钱，并且它的破产将会损害急切等待另一项仿制药的大量美国患者的福祉。政府竟然真的同意了这项交易。造假作恶者得到了巨额奖励，赚得盆满钵满；高管们换个药企继续高薪高职；达成交易的政府官员们领了办下大案的绩效。只有患者们用着数据虚假药效成疑的仿制药，受到切身的伤害。</p>
 <p>总之这本书适合听有声书或者略读。可以一读。</p>
+<hr>
 <p>总结下来，一月我读的大多是非虚构的通俗读物。还有几本实在乏善可陈便略过不提。之后几个月，我计划多读一些虚构作品、经典作品，或者更费脑一些的书。</p>
 
   </div>
@@ -773,6 +788,11 @@ body {
       </div>
 
       <div class="nav-next" style="flex: 1; text-align: right; padding-left: 1rem;">
+        
+          <a href="/posts/young-lesbian-and-the-mountain/" style="display: block; text-decoration: none;">
+            <div style="font-size: 0.8rem; color: #aaa; margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 1px;">Next &rarr;</div>
+            <div style="font-weight: 700; color: var(--color-deep-blue) !important; font-size: 1.1rem; line-height: 1.3;">女同与山：游戏 Cairn（孤山独影）推荐</div>
+          </a>
         
       </div>
     </nav>

@@ -1,0 +1,21 @@
+<span class="spoiler" title="点击显示内容" onclick="this.classList.toggle('is-visible')">
+    {{ .Inner | markdownify }}
+</span>
+
+<style>
+.spoiler {
+    background-color:#bbbbbb;
+    color: #bbbbbb;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 2px;
+    padding: 0 2px;
+}
+
+/* 单击后：背景变透明，文字恢复继承的主题原色 */
+.spoiler.is-visible {
+    background-color: transparent;
+    color: inherit; /* 继承你博文正文的原本颜色 */
+    user-select: text;
+}
+</style>

@@ -66,10 +66,11 @@ a {
 
 p {
     &>img {
-        border-radius: 5px;
+        border-radius: 8px;
         display: flex;
         margin: 25px auto;
         max-width: 100%;
+        overflow: hidden;              /* 确保内容不超出圆角 */
     }
 
     &>code {
@@ -79,8 +80,15 @@ p {
         background-color: var(--color-code-block);
         margin: 0 1px;
         padding: 1px 4px;
-        border-radius: 5px;
+        border-radius: 8px;
     }
+}
+/*在外面独立写一条规则，强制统一所有正文图片有8px的圆角 */
+.post-content img, 
+.article-container img,
+.cover-image {
+    border-radius: 8px !important;
+    overflow: hidden !important;
 }
 
 pre>code {
@@ -115,11 +123,11 @@ blockquote {
     font-size: 0.93rem;
     opacity: 0.7;
 }
-
+/* 1. 代码块部分 */
 .highlight {
     background-color: #252b2e;
     overflow: auto;
-    border-radius: 5px;
+    border-radius: 8px;
 
     pre {
         margin: 10px;
@@ -136,22 +144,23 @@ blockquote {
         }
     }
 }
-
+/* 2. 封面容器部分 */
 .hero,
 .cover {
     width: 100%;
     height: 222px;
-    border-radius: 5px;
+    border-radius: 8px;
     box-shadow: 0 0 5px var(--color-shadow);
+    overflow: hidden ;            /* 核心：彻底裁掉直角白边 */
 
     @media (max-width:720px) {
         height: 182px;
     }
-
+/* 3. 封面图片部分 */
     &-image {
         width: 100%;
         height: 100%;
-        border-radius: 5px;
+        border-radius: 8px;
         object-fit: cover;
         object-position: center;
     }

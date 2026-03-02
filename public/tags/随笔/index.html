@@ -91,30 +91,33 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&family=Noto+Serif+SC:wght@500;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-     
-    *, *::before, *::after {
-        font-family: 'PT Sans', 'Noto Sans SC', sans-serif ;
-        -webkit-font-smoothing: antialiased;
-    }
+ 
+html, body {
+    font-family: 'PT Sans', 'Noto Sans SC', sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
 
+ 
+button, input, select, textarea {
+    font-family: inherit;
+}
+
+ 
+code, pre, kbd, samp {
+    font-family: 'Fira Code', monospace !important;  
+}
      
 
     :root {
      
-    --color-deep-blue: #4169e1;  
+    --color-deep-blue: #597ade;  
     
      
      
     --color-primary: var(--color-deep-blue); 
 }
 
- 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --color-deep-blue: #89b4fa;  
-        --color-primary: var(--color-deep-blue);
-    }
-}
+
 
      
     main, #main, .main-content, article, .post, .page {
@@ -239,27 +242,38 @@
     }
 
  
+
 .post-content blockquote {
     margin: 1rem 0;
-    padding: 1rem 1rem;
-     
+    padding: 0.5rem 0.5rem;
     background-color: rgba(100, 144, 255, 0.05); 
-     
-    border-left: 4px solid #6490ff; 
     border-left: 4px solid var(--color-deep-blue);
     border-radius: 0 2px 2px 0;
-    display: block;         
-    text-align: left;       
-    white-space: pre-wrap;  
+    display: block;
+    text-align: left;
+    white-space: pre-wrap;
+    font-family: 'Noto Serif SC', serif !important;
+    font-size: 0.88rem;
 }
 
 .post-content blockquote p {
     font-family: 'Noto Serif SC', serif !important;
-    font-size: 0.85rem;
+    font-size: 0.88rem;
     color: #555;
-    margin-bottom: 0 !important;  
-    display: block;         
-    margin: 0 0 0.8em 0;   
+     
+    margin: 0 0 0 0 !important; 
+    display: block;
+}
+
+ 
+[data-theme='dark'] .post-content blockquote {
+     
+    background-color: rgba(0, 0, 0, 0.2) !important; 
+    border-left-color: var(--color-deep-blue) !important;
+}
+
+[data-theme='dark'] .post-content blockquote p {
+    color: #dddddd !important;  
 }
 
  
