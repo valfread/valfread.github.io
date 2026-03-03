@@ -24,8 +24,14 @@
 
  <div class="site-stats" style="margin-top: 2rem; margin-bottom: 4rem; color: #888; font-size: 0.9rem; font-family: 'Noto Sans SC', sans-serif; border-top: 1px solid #eee; padding-top: 1rem;">
     本站建于 2026-02-16
-  <br>
+    <br>
+   一共 {{ len (where .Site.RegularPages "Section" "posts") }} 篇文章
+   <br>
     共计 {{ lang.FormatNumber 0 $totalCount }} 字
+  
+  
+    {{/* <br> 这里暂时不显示！等决定显示了去掉备注的符号就可以
+    收到 <span class="waline-comment-count" data-path="/" /> 条评论*/}}
   </div>
 
   {{/* 4. 评论区 */}}

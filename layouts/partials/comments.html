@@ -1,20 +1,129 @@
-{{/* 1. 评论框容器 */}}
-<div class="giscus" style="margin-top: 2rem;"></div>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css" />
 
-{{/* 2. Giscus 加载脚本：将初始主题设为 light */}}
-<script src="https://giscus.app/client.js"
-        data-repo="valfread/valfread.github.io"
-        data-repo-id="R_kgDORQkNwQ"
-        data-category="Announcements"
-        data-category-id="DIC_kwDORQkNwc4C2dvt"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="transparent_dark" 
-        data-lang="zh-CN"
-        crossorigin="anonymous"
-        async>
+<div id="waline" style="margin-top: 4rem;"></div>
+
+<script type="module">
+  import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
+
+init({
+    el: '#waline',
+    serverURL: 'https://walinecomments-steel.vercel.app',
+    /*设置为 [] 则不显示浏览器、操作系统、地理位置等任何元数据*/
+    meta: ['nick', 'mail', 'link'],
+    visitor: false,
+    dark: 'html[data-theme="dark"]',
+    lang: 'zh-CN',
+    pageview: true,
+    comment: true,
+    copyright: false,
+    /*自定义的酷炫表情回应*/
+    reaction: [
+    '/reactions/love.png',
+    '/reactions/angry.png',
+    '/reactions/cry.png',
+    '/reactions/scared.png',
+    '/reactions/smirk.png',
+    '/reactions/lol.png',
+    '/reactions/idontcar.png',
+  ],
+
+    locale: {
+      placeholder: '评论不会收集你的 IP 或 UA 信息，也不会把你的邮箱、操作系统等隐私信息显示在前台。',
+      reactionTitle: '留下你的回应'
+    },
+  });
 </script>
 
+<style>
+  /* 1. 彻底清除多余标志 */
+  .wl-rss, .wl-copyright, .wl-power { display: none !important; }
+
+  /* 2. 强制头部容器横排 */
+  .wl-header {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 10px !important;
+    padding: 10px !important;
+  }
+
+  /* 3. 核心修正：使用截图中看到的正确类名 .wl-header-item */
+  .wl-header .wl-header-item {
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: row !important; /* 强制标题和框在同一行 */
+    align-items: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-bottom: 1px solid #ddd !important;
+  }
+
+  /* 调整标题标签 */
+  .wl-header .wl-header-item label {
+    display: inline-block !important;
+    width: auto !important;
+    margin: 0 8px 0 0 !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important; /* 防止文字被压缩 */
+  }
+
+  /* 针对截图中显示的 input#wl-nick 零件 */
+  .wl-header .wl-header-item .wl-input {
+    flex: 1 !important;
+    margin: 0 !important; /* 强制抹除截图中显示的 35px 边距 */
+    padding: 5px 0 !important;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  /* 4. 圆角统一 */
+  .wl-content, .wl-btn, .wl-panel { border-radius: 8px !important; }
+
+  /* 为必填项（昵称和邮箱）添加红色星号 */
+.wl-header-item label[for="wl-nick"]::after,
+.wl-header-item label[for="wl-mail"]::after {
+    content: " *";
+    color: #ff4d4f; /* 经典的警告红 */
+    font-weight: bold;
+    margin-left: 2px;
+}
+
+/* 如果你希望给必填项的文字一点视觉暗示，也可以稍微加深颜色 */
+.wl-header-item label[for="wl-nick"],
+.wl-header-item label[for="wl-link"],
+.wl-header-item label[for="wl-mail"] {
+    color: var(--color-text); /* 自动适配你的暗色模式文字颜色 */
+    font-size: 14px ; 
+}
+
+.wl-header .wl-header-item .wl-input {
+    font-size: 14px ; 
+}
+/* 1. 把 .wl-empty 里的原文字变消失 */
+.wl-empty {
+    color: transparent !important;
+}
+/* 1. 不显示留言者浏览器和os信息*/
+.wl-browser, .wl-os {
+    display: none !important;
+}
+/* 2. 隐藏包裹它们的容器，彻底净化昵称下方的空间 */
+.wl-meta {
+    display: none !important;
+}
+
+:root {
+    /* 将 #007bff 换成你博客实际使用的蓝色 */
+    --waline-theme-color: var(--color-deep-blue);
+    /* 鼠标悬停或点击时的颜色，通常比主题色稍微深一点点 */
+    --waline-active-color: #0056b3; 
+  }
+
+  /* 如果你的博客支持暗黑模式，且你希望在暗黑模式下也用这个蓝色 */
+  [data-theme='dark'] {
+    --waline-theme-color: #8197da;
+    --waline-active-color: #8ea4e4;
+  }
+</style>

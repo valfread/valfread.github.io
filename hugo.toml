@@ -3,6 +3,7 @@ languageCode = 'zh-cn'
 title = 'valfread'
 author = 'Qingshanyima'
 theme = "vortisil"
+canonifyURLs = true
 
 # 1. 标签功能与主页设置
 [taxonomies]
