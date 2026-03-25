@@ -1,5 +1,5 @@
 ---
-title: "关于每个月捐 100 块新年目标的更新"
+title: "关于每个月捐 100 块新年目标的 2024 年更新"
 date: 2024-02-06T00:23:23-05:00
 draft: false # 如想要发布，请务必修改为 false
 author: Qingshanyima

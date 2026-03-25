@@ -9,7 +9,7 @@ license: "CC-BY-NC-ND 4.0 "
 license_url: "https://creativecommons.org/licenses/by-nc-nd/4.0/"
 ---
 
-上接前文[2025 年阅读总结：拉黑的书]({{< relref "2025-reading-wrap-up-meh-list" >}})
+上接前文[2025 年阅读总结：拉黑的书]({{< relref "2025-reading-wrap-up-meh-list" >}})，本篇总结我在 2025 年读过的好书。
 
 ## 推荐的书
 
